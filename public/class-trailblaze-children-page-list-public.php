@@ -62,7 +62,7 @@ class Trailblaze_Children_Page_List_Public {
      * @param    array    $atts    Shortcode attributes.
      * @return   string   HTML list of child pages.
      */
-    public function children_page_list($atts) {
+    public function children_page_list_function($atts) {
         $atts = shortcode_atts( array(
             'parent' => null,
         ), $atts, 'children_page_list' );
