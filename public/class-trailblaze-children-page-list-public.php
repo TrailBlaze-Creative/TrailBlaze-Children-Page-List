@@ -55,13 +55,25 @@ class Trailblaze_Children_Page_List_Public {
 	}
 
 
-    // function children_page_list a simple shortcode with the parent page id as an attribute, that will simply list all the children pages and grandchildren pages of the parent page.
+    /**
+     * Display a list of child pages of the current page.
+     *
+     * @since    1.0.0
+     * @param    array    $atts    Shortcode attributes.
+     * @return   string   HTML list of child pages.
+     */
     public function children_page_list($atts) {
         $atts = shortcode_atts( array(
-            'parent' => 0,
+            'parent' => null,
         ), $atts, 'children_page_list' );
 
         $parent = $atts['parent'];
+
+        // If no parent is specified in the shortcode, use the parent of the current page
+        if ($parent === null) {
+            global $post;
+            $parent = ($post->post_parent) ? $post->post_parent : $post->ID;
+        }
 
         $args = array(
             'post_parent' => $parent,
