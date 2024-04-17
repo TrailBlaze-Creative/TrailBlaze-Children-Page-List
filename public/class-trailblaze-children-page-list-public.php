@@ -69,10 +69,10 @@ class Trailblaze_Children_Page_List_Public {
 
         $parent = $atts['parent'];
 
-        // If no parent is specified in the shortcode, use the parent of the current page
         if ($parent === null) {
             global $post;
-            $parent = ($post->post_parent) ? $post->post_parent : $post->ID;
+            $ancestors = get_post_ancestors($post->ID);
+            $parent = ($ancestors) ? $ancestors[count($ancestors) - 1] : $post->ID;
         }
 
         $args = array(

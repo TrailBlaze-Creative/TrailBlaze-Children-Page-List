@@ -19,6 +19,9 @@ Use the shortcode `[children_page_list parent="PARENT_PAGE_ID"]` in your posts o
 ### 1.0.0
 - Initial release.
 
+### 1.0.1
+- Fix issue with grand child pages not getting to the top parent
+
 ## License
 
 This project is licensed under the GPL-2.0+ License - see the [LICENSE](LICENSE) file for details.

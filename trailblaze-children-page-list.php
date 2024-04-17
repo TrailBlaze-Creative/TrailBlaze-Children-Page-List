@@ -16,7 +16,7 @@
  * Plugin Name:       TrailBlaze Children Page List
  * Plugin URI:        https://github.com/TrailBlaze-Creative/TrailBlaze-Children-Page-List
  * Description:       Simple shortcode to display a list of child and grandchild pages of the specified parent page.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            TrailBlaze Creative
  * Author URI:        https://trailblazecreative.com/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TRAILBLAZE_CHILDREN_PAGE_LIST_VERSION', '1.0.0' );
+define( 'TRAILBLAZE_CHILDREN_PAGE_LIST_VERSION', '1.0.1' );
 
 /**
  * The code that runs during plugin activation.
