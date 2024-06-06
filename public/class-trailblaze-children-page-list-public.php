@@ -22,38 +22,37 @@
  */
 class Trailblaze_Children_Page_List_Public {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $version ) {
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string    $plugin_name       The name of the plugin.
+     * @param      string    $version    The version of this plugin.
+     */
+    public function __construct( $plugin_name, $version ) {
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
 
-	}
-
+    }
 
     /**
      * Display a list of child pages of the current page.
@@ -91,11 +90,13 @@ class Trailblaze_Children_Page_List_Public {
 
         if ($show_parent) {
             $parent_page = get_post($parent);
-            $output .= '<a class="parent-page" href="' . get_permalink($parent_page->ID) . '">' . $parent_page->post_title . '</a><br />';
+            $current_class = ($parent_page->ID == get_the_ID()) ? ' current-page' : '';
+            $output .= '<a class="parent-page' . $current_class . '" href="' . get_permalink($parent_page->ID) . '">' . $parent_page->post_title . '</a><br />';
         }
 
         foreach ($children as $child) {
-            $output .= '<a class="child-page" href="' . get_permalink($child->ID) . '">' . $child->post_title . '</a><br />';
+            $current_class = ($child->ID == get_the_ID()) ? ' current-page' : '';
+            $output .= '<a class="child-page' . $current_class . '" href="' . get_permalink($child->ID) . '">' . $child->post_title . '</a><br />';
             $grandchildren = get_children(array(
                 'post_parent' => $child->ID,
                 'post_type' => 'page',
@@ -104,7 +105,8 @@ class Trailblaze_Children_Page_List_Public {
                 'orderby' => 'menu_order'
             ));
             foreach ($grandchildren as $grandchild) {
-                $output .= '<a class="grandchild-page" href="' . get_permalink($grandchild->ID) . '">' . $grandchild->post_title . '</a><br />';
+                $current_class = ($grandchild->ID == get_the_ID()) ? ' current-page' : '';
+                $output .= '<a class="grandchild-page' . $current_class . '" href="' . get_permalink($grandchild->ID) . '">' . $grandchild->post_title . '</a><br />';
             }
         }
 
