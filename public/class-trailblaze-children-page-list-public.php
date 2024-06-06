@@ -65,9 +65,11 @@ class Trailblaze_Children_Page_List_Public {
     public function children_page_list_function($atts) {
         $atts = shortcode_atts( array(
             'parent' => null,
+            'show_parent' => false,
         ), $atts, 'children_page_list' );
 
         $parent = $atts['parent'];
+        $show_parent = filter_var($atts['show_parent'], FILTER_VALIDATE_BOOLEAN);
 
         if ($parent === null) {
             global $post;
@@ -86,6 +88,11 @@ class Trailblaze_Children_Page_List_Public {
         $children = get_children($args);
 
         $output = '<div class="children-pages-menu">';
+
+        if ($show_parent) {
+            $parent_page = get_post($parent);
+            $output .= '<a class="parent-page" href="' . get_permalink($parent_page->ID) . '">' . $parent_page->post_title . '</a><br />';
+        }
 
         foreach ($children as $child) {
             $output .= '<a class="child-page" href="' . get_permalink($child->ID) . '">' . $child->post_title . '</a><br />';
